@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Главная страница {% endblock %}
+{% block main %}
+    <div class="container">
+        <div class="recent">
+            <div class="recent-header">
+                <h1 style="margin-bottom: 30px">Наши работы</h1>
+            </div>
+
+            {% if applications %}
+                {% for application in applications %}
+                    <div class="card" style="width: 18rem; margin-bottom: 30px">
+                        <img class="card-img-top" src="{{ application.image.url }}" alt="app-img">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ application.title }}</h5>
+                            <p class="card-text">{{ application.cat }}</p>
+                            <p class="card-text">{{ application.time_create }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block other %}
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-content">
+                    <h2>Заявок в работе:</h2>
+                    <span>{{ applications_amount }}</span>
+                </div>
+                <a class="btn btn-primary" style="margin-top: 10px" href="{% url 'registration_page' %}">Подать заявку</a>
+            </div> <!-- footer-top -->
+            <div class="footer-bot"></div>
+        </div> <!-- container -->
+    </footer>
+{% endblock %}
+
